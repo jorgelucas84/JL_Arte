@@ -92,10 +92,11 @@
             margin: 0;
         }
 
+        /* AJUSTE: Reduzi minmax de 400px para 300px e o gap para 4rem */
         .art-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 6rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 4rem;
             align-items: start;
         }
 
@@ -106,29 +107,24 @@
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Moldura apenas na imagem */
+        /* Ajuste proporcional da moldura */
         .img-container {
             position: relative;
             background-color: #010205;
-            margin-bottom: 2rem;
-            
-            /* Estrutura da Moldura: Metal (borda externa) + Madeira (padding) */
-            padding: 14px; 
+            margin-bottom: 1.5rem;
+            padding: 12px; 
             background: var(--frame-wood);
-            border: 2px solid var(--frame-metal);
-            
-            /* Efeito de Profundidade */
+            border: 1.5px solid var(--frame-metal);
             box-shadow: 
-                0 30px 60px -12px rgba(0,0,0,0.8),
+                0 20px 40px -10px rgba(0,0,0,0.8),
                 inset 0 0 10px rgba(0,0,0,0.5);
         }
 
-        /* Filete metálico interno para acabamento */
         .img-container::after {
             content: "";
             position: absolute;
-            top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
             pointer-events: none;
         }
 
@@ -136,11 +132,11 @@
             width: 100%;
             height: auto;
             display: block;
-            box-shadow: 0 0 5px rgba(0,0,0,0.8); /* Sombra da tela na madeira */
+            box-shadow: 0 0 5px rgba(0,0,0,0.8);
         }
 
         .art-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
         }
 
         .art-meta {
@@ -153,18 +149,18 @@
 
         .art-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin: 0;
         }
 
         .art-year {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 600;
         }
 
         .art-specs {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 1rem;
@@ -172,8 +168,8 @@
         }
 
         .art-description {
-            margin-top: 1.2rem;
-            font-size: 0.95rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
             color: #888;
             max-width: 95%;
             font-weight: 300;
@@ -195,7 +191,6 @@
             max-width: 85%;
             max-height: 80vh;
             object-fit: contain;
-            /* Moldura no Modal */
             padding: 20px;
             background: var(--frame-wood);
             border: 3px solid var(--frame-metal);
