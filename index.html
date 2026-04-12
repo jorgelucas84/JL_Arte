@@ -207,20 +207,21 @@
         }
 
         .animated-frame-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             margin-top: 0.5rem;
             font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #6366f1; 
+            color: #ff0000; 
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s;
+            transition: opacity 0.3s;
         }
 
         .animated-frame-link:hover {
-            border-color: #6366f1;
+            opacity: 0.8;
         }
 
         #modal {
@@ -254,9 +255,9 @@
         }
 
         #modal video {
-            max-width: 600px; /* Reduz o tamanho horizontal do vídeo */
-            width: 100%;      /* Garante responsividade */
-            max-height: 70vh; /* Reduz o tamanho vertical para não estourar a tela */
+            max-width: 600px;
+            width: 100%;      
+            max-height: 70vh;
             object-fit: contain;
             display: none;
         }
@@ -286,7 +287,7 @@
             .main-art { grid-column: span 1; }
             .serie-narrative { padding-left: 1rem; }
             header { padding: 3rem 1rem 2rem; }
-            #modal video { max-width: 90vw; } /* Em celulares, ocupa quase a tela toda */
+            #modal video { max-width: 90vw; }
         }
     </style>
 </head>
@@ -324,7 +325,10 @@
                 </div>
                 <p class="art-specs">Acrílica sobre tela • 40x60cm</p>
                 <p class="art-description">A peça central que ancora todo o sistema simbólico da série.</p>
-                <a class="animated-frame-link" onclick="openModal('vid/0.mp4', 'vid')">QUADRO ANIMADO</a>
+                <a class="animated-frame-link" onclick="openModal('vid/0.mp4', 'vid')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    CLIQUE AQUI!
+                </a>
             </article>
 
             <article class="art-item">
@@ -335,7 +339,10 @@
                 </div>
                 <p class="art-specs">Acrílica sobre tela • 40x30cm</p>
                 <p class="art-description">O princípio produtivo biológico.</p>
-                <a class="animated-frame-link" onclick="openModal('vid/1.mp4', 'vid')">QUADRO ANIMADO</a>
+                <a class="animated-frame-link" onclick="openModal('vid/1.mp4', 'vid')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    CLIQUE AQUI!
+                </a>
             </article>
 
             <article class="art-item">
@@ -346,7 +353,10 @@
                 </div>
                 <p class="art-specs">Acrílica sobre tela • 40x30cm</p>
                 <p class="art-description">Integração tecnológica alienígena.</p>
-                <a class="animated-frame-link" onclick="openModal('vid/2.mp4', 'vid')">QUADRO ANIMADO</a>
+                <a class="animated-frame-link" onclick="openModal('vid/2.mp4', 'vid')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    CLIQUE AQUI!
+                </a>
             </article>
 
             <article class="art-item">
@@ -357,7 +367,10 @@
                 </div>
                 <p class="art-specs">Acrílica sobre tela • 40x30cm</p>
                 <p class="art-description">Clímax e ruptura narrativa.</p>
-                <a class="animated-frame-link" onclick="openModal('vid/3.mp4', 'vid')">QUADRO ANIMADO</a>
+                <a class="animated-frame-link" onclick="openModal('vid/3.mp4', 'vid')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    CLIQUE AQUI!
+                </a>
             </article>
 
             <article class="art-item">
@@ -368,7 +381,10 @@
                 </div>
                 <p class="art-specs">Acrílica sobre tela • 40x30cm</p>
                 <p class="art-description">Desfecho e marcas no ecossistema.</p>
-                <a class="animated-frame-link" onclick="openModal('vid/4.mp4', 'vid')">QUADRO ANIMADO</a>
+                <a class="animated-frame-link" onclick="openModal('vid/4.mp4', 'vid')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    CLIQUE AQUI!
+                </a>
             </article>
         </main>
 
@@ -377,8 +393,8 @@
         </div>
 
         <section class="art-grid-others">
-            <article class="art-item" onclick="openModal('img/jogatina.jpg', 'img')">
-                <div class="img-container"><img src="img/jogatina.jpg" alt="A Jogatina"></div>
+            <article class="art-item">
+                <div class="img-container" onclick="openModal('img/jogatina.jpg', 'img')"><img src="img/jogatina.jpg" alt="A Jogatina"></div>
                 <div class="art-meta" style="margin-top: 15px;">
                     <h3 class="art-title">A Jogatina</h3>
                     <span class="art-year">2026</span>
@@ -392,10 +408,14 @@
                     • <strong>Rubens</strong> – Tartaruga, é piloto de corrida de carros.<br>
                     • <strong>Martin</strong> – Tiranossauro rex, é açougueiro.
                 </div>
+                <a class="animated-frame-link" onclick="openModal('vid/jogatina.mp4', 'vid')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    CLIQUE AQUI!
+                </a>
             </article>
 
-            <article class="art-item" onclick="openModal('img/asteroide.jpg', 'img')">
-                <div class="img-container"><img src="img/asteroide.jpg" alt="O Asteroide"></div>
+            <article class="art-item">
+                <div class="img-container" onclick="openModal('img/asteroide.jpg', 'img')"><img src="img/asteroide.jpg" alt="O Asteroide"></div>
                 <div class="art-meta" style="margin-top: 30px;">
                     <h3 class="art-title">O Asteroide</h3>
                     <span class="art-year">2026</span>
@@ -407,6 +427,10 @@
                     • <strong>Tamanho</strong> – 347 metros de diâmetro.<br>
                     • <strong>Composição</strong> – Rocha + níquel + ferro.
                 </div>
+                <a class="animated-frame-link" onclick="openModal('vid/asteroide.mp4', 'vid')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg>
+                    CLIQUE AQUI!
+                </a>
             </article>
         </section>
     </div>
