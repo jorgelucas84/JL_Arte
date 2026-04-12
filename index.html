@@ -90,17 +90,28 @@
             margin: 0;
         }
 
-        /* CONFIGURAÇÃO DO ALINHAMENTO SOLICITADO */
+        /* Estilo da Narrativa */
+        .serie-narrative {
+            max-width: 900px;
+            margin: 2rem 0 4rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: justify;
+            border-left: 2px solid #6366f1;
+            padding-left: 2rem;
+        }
+
         .art-grid-serie {
             display: grid;
             grid-template-columns: 1.2fr 1fr 1fr;
             grid-template-rows: auto auto;
-            gap: 2rem 3rem; /* Espaçamento reduzido entre textos */
+            gap: 2rem 3rem;
             align-items: stretch;
         }
 
         .main-art {
-            grid-row: span 2; /* Faz o quadro ocupar as duas linhas da direita */
+            grid-row: span 2;
             display: flex;
             flex-direction: column;
         }
@@ -111,11 +122,10 @@
         }
 
         .main-art .img-container img {
-            object-fit: cover; /* Garante que preencha a altura sem distorcer */
+            object-fit: cover;
             height: 100%;
         }
 
-        /* GRID PADRÃO PARA OUTRAS SEÇÕES */
         .art-grid-others {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -227,6 +237,7 @@
         @media (max-width: 768px) {
             .art-grid-serie, .art-grid-others { grid-template-columns: 1fr; }
             .main-art { grid-column: span 1; }
+            .serie-narrative { padding-left: 1rem; }
         }
     </style>
 </head>
@@ -242,6 +253,13 @@
     <div class="container">
         <div class="collection-header">
             <h2>Série: Caleidoscópio Psicodélico</h2>
+        </div>
+
+        <div class="serie-narrative">
+            A série é um mergulho sem filtros nas alucinações de um cérebro que flerta com a insanidade e o bom humor. Tudo gira em torno de um <strong>Surfista</strong> que cultiva e comercializa cogumelos alucinógenos. Sob efeito da própria mercadoria, ele abandona as ondas para surfar sobre o casco da tartaruga <strong>Rubens</strong>, enquanto a realidade se dobra ao som da <em>Nona Sinfonia de Beethoven</em>. <br><br>
+            A operação é complexa: um avião cruza desertos e cordilheiras para garantir a logística do transporte. Mas o caos aparece quando gafanhotos invadem a plantação. A solução? O surfista convoca o <strong>Cardeal Bergóglio</strong> para fazer o controle biológico da praga. <br><br>
+            Enquanto o Surfista se perde em suas viagens, o perigo real vem do espaço. Os ETs <strong>Varginha, Bilu e Etevaldo</strong> constroem uma pirâmide secreta para extrair o princípio ativo dos cogumelos. Eles aproveitam a distração e roubam a safra, iniciando uma perseguição onde ninguém sabe o que é real ou alucinação. <br><br>
+            No fim, os invasores se espalham pelo mapa — um para Varginha (MG), outro para Corguinho (MS) e o último volta para o espaço com o material roubado, deixando o Surfista para trás com suas visões.
         </div>
 
         <main class="art-grid-serie">
