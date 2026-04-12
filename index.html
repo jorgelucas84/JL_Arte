@@ -16,9 +16,8 @@
             --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
             --border: rgba(255, 255, 255, 0.1);
             
-            /* Cores da Nova Moldura */
-            --frame-wood: #1a1512; /* Madeira Ébano */
-            --frame-metal: #c5a059; /* Ouro velho / Metal */
+            --frame-wood: #1a1512; 
+            --frame-metal: #c5a059; 
         }
 
         body {
@@ -79,9 +78,9 @@
         }
 
         .collection-header {
-            margin: 8rem 0 4rem;
+            margin: 8rem 0 3rem; /* Reduzi a margem inferior */
             border-bottom: 1px solid var(--border);
-            padding-bottom: 1.5rem;
+            padding-bottom: 1rem;
         }
 
         .collection-header h2 {
@@ -92,7 +91,24 @@
             margin: 0;
         }
 
-        /* AJUSTE: Reduzi minmax de 400px para 300px e o gap para 4rem */
+        /* NOVO LAYOUT DA SÉRIE: 1 Esquerda, 4 Direita (2x2) */
+        .serie-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr; /* Coluna do principal maior */
+            grid-template-areas: 
+                "main item1 item2"
+                "main item3 item4";
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .main-item { grid-area: main; }
+        .item-1 { grid-area: item1; }
+        .item-2 { grid-area: item2; }
+        .item-3 { grid-area: item3; }
+        .item-4 { grid-area: item4; }
+
+        /* GRID PADRÃO PARA OUTRAS OBRAS */
         .art-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -107,32 +123,20 @@
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Ajuste proporcional da moldura */
         .img-container {
             position: relative;
             background-color: #010205;
-            margin-bottom: 1.5rem;
-            padding: 12px; 
+            margin-bottom: 1rem; /* Reduzi o espaço abaixo da imagem */
+            padding: 10px; 
             background: var(--frame-wood);
             border: 1.5px solid var(--frame-metal);
-            box-shadow: 
-                0 20px 40px -10px rgba(0,0,0,0.8),
-                inset 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        .img-container::after {
-            content: "";
-            position: absolute;
-            top: 8px; left: 8px; right: 8px; bottom: 8px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            pointer-events: none;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8);
         }
 
         .img-container img {
             width: 100%;
             height: auto;
             display: block;
-            box-shadow: 0 0 5px rgba(0,0,0,0.8);
         }
 
         .art-item:hover {
@@ -144,35 +148,36 @@
             justify-content: space-between;
             align-items: baseline;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 0.75rem;
+            padding-bottom: 0.4rem; /* Reduzi o padding */
         }
 
         .art-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             margin: 0;
         }
 
         .art-year {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             font-weight: 600;
         }
 
         .art-specs {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 1rem;
+            letter-spacing: 1px;
+            margin-top: 0.5rem; /* Reduzi o espaço */
             color: var(--text-muted);
         }
 
         .art-description {
-            margin-top: 1rem;
-            font-size: 0.9rem;
+            margin-top: 0.5rem; /* Reduzi o espaço */
+            font-size: 0.85rem;
             color: #888;
             max-width: 95%;
             font-weight: 300;
+            line-height: 1.4;
         }
 
         #modal {
@@ -194,12 +199,11 @@
             padding: 20px;
             background: var(--frame-wood);
             border: 3px solid var(--frame-metal);
-            box-shadow: 0 0 120px rgba(0,0,0,1);
         }
 
         footer {
-            margin-top: 15rem;
-            padding: 8rem 2rem;
+            margin-top: 10rem;
+            padding: 6rem 2rem;
             background: #010206;
             border-top: 1px solid var(--border);
             text-align: center;
@@ -210,13 +214,22 @@
             text-decoration: none;
             font-size: 2rem;
             font-family: 'Playfair Display', serif;
-            display: inline-block;
-            position: relative;
+        }
+
+        @media (max-width: 1024px) {
+            .serie-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: 
+                    "main main"
+                    "item1 item2"
+                    "item3 item4";
+            }
         }
 
         @media (max-width: 768px) {
-            header { padding: 6rem 1.5rem 3rem; }
-            .art-grid { grid-template-columns: 1fr; gap: 4rem; }
+            .serie-grid { grid-template-columns: 1fr; grid-template-areas: none; }
+            .serie-grid article { grid-area: auto !important; }
+            .art-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -234,8 +247,8 @@
             <h2>Série: Caleidoscópio Psicodélico</h2>
         </div>
 
-        <main class="art-grid">
-            <article class="art-item" onclick="openModal('img/0.jpg')">
+        <main class="serie-grid">
+            <article class="art-item main-item" onclick="openModal('img/0.jpg')">
                 <div class="img-container"><img src="img/0.jpg" alt="Caleidoscópio Psicodélico"></div>
                 <div class="art-meta">
                     <h3 class="art-title">0 - Caleidoscópio Psicodélico</h3>
@@ -245,44 +258,44 @@
                 <p class="art-description">A peça central que ancora todo o sistema simbólico da série.</p>
             </article>
 
-            <article class="art-item" onclick="openModal('img/1.jpg')">
+            <article class="art-item item-1" onclick="openModal('img/1.jpg')">
                 <div class="img-container"><img src="img/1.jpg" alt="A plantação"></div>
                 <div class="art-meta">
-                    <h3 class="art-title">01 - A plantação de cogumelos</h3>
+                    <h3 class="art-title">01 - A plantação</h3>
                     <span class="art-year">2026</span>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">O princípio produtivo e a harmonia biológica inicial.</p>
+                <p class="art-specs">30x40cm</p>
+                <p class="art-description">Princípio produtivo e harmonia biológica.</p>
             </article>
 
-            <article class="art-item" onclick="openModal('img/2.jpg')">
+            <article class="art-item item-2" onclick="openModal('img/2.jpg')">
                 <div class="img-container"><img src="img/2.jpg" alt="Construção das pirâmides"></div>
                 <div class="art-meta">
-                    <h3 class="art-title">02 - A construção das pirâmides</h3>
+                    <h3 class="art-title">02 - Pirâmides</h3>
                     <span class="art-year">2026</span>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">A integração da tecnologia alienígena na paisagem primitiva.</p>
+                <p class="art-specs">30x40cm</p>
+                <p class="art-description">Integração tecnológica alienígena.</p>
             </article>
 
-            <article class="art-item" onclick="openModal('img/3.jpg')">
+            <article class="art-item item-3" onclick="openModal('img/3.jpg')">
                 <div class="img-container"><img src="img/3.jpg" alt="O roubo"></div>
                 <div class="art-meta">
-                    <h3 class="art-title">03 - O roubo dos cogumelos</h3>
+                    <h3 class="art-title">03 - O roubo</h3>
                     <span class="art-year">2026</span>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">O clímax narrativo: a ruptura e o conflito de interesses.</p>
+                <p class="art-specs">30x40cm</p>
+                <p class="art-description">Ruptura e conflito de interesses.</p>
             </article>
 
-            <article class="art-item" onclick="openModal('img/4.jpg')">
+            <article class="art-item item-4" onclick="openModal('img/4.jpg')">
                 <div class="img-container"><img src="img/4.jpg" alt="A fuga"></div>
                 <div class="art-meta">
-                    <h3 class="art-title">04 - A fuga dos ETs</h3>
+                    <h3 class="art-title">04 - A fuga</h3>
                     <span class="art-year">2026</span>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">O desfecho cíclico e as marcas deixadas no ecossistema.</p>
+                <p class="art-specs">30x40cm</p>
+                <p class="art-description">Desfecho cíclico no ecossistema.</p>
             </article>
         </main>
 
@@ -298,7 +311,7 @@
                     <span class="art-year">2026</span>
                 </div>
                 <p class="art-specs">Técnica Mista • 50x70cm</p>
-                <p class="art-description">Encontros improváveis: Jack, o jacaré, e Suri, a programadora.</p>
+                <p class="art-description">Encontros improváveis: Jack e Suri.</p>
             </article>
 
             <article class="art-item" onclick="openModal('img/meteoro.jpg')">
