@@ -53,7 +53,8 @@
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(3rem, 10vw, 5rem);
-            font-weight: 700;
+            /* AJUSTE AQUI: Mudado de 700 para 400 para diminuir a espessura */
+            font-weight: 400;
             margin: 0;
             letter-spacing: -3px;
             background: var(--accent-gradient);
@@ -90,12 +91,11 @@
             margin: 0;
         }
 
-        /* Estilo da Narrativa Ajustado conforme pedido */
         .serie-narrative {
-            max-width: 100%; /* Vai até o final à direita */
+            max-width: 100%;
             margin: 2rem 0 4rem;
             color: var(--text-muted);
-            font-size: 0.9rem; /* Letra um pouco menor */
+            font-size: 0.9rem;
             line-height: 1.6;
             text-align: justify;
             border-left: 2px solid #6366f1;
