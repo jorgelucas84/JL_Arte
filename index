@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Soares | Portfólio Acadêmico & Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8f8f8;
+            --text: #1a1a1a;
+            --accent: #ff3e00; /* Laranja vibrante para dar o toque contemporâneo */
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 100px 5% 50px;
+            border-bottom: 2px solid var(--text);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        section { padding: 80px 5%; }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        /* Layout das "Obras" */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .obra-card {
+            border: 1px solid transparent;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            padding: 20px;
+        }
+
+        .obra-card:hover {
+            border-color: var(--text);
+            background: #fff;
+            transform: translateY(-10px);
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 800;
+        }
+
+        .obra-titulo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 15px 0;
+        }
+
+        .obra-desc {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        footer {
+            padding: 50px 5%;
+            background: var(--text);
+            color: white;
+            text-align: center;
+        }
+
+        /* Animação de entrada */
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="fade-in">
+        <div class="subtitle">Laboratório de Mecânica de Pavimentos / UFC</div>
+        <h1>Jorge<br>Soares.</h1>
+        <p style="max-width: 600px; margin-top: 30px;">
+            Professor Titular e Pesquisador PQ-1A. Integrando modelagem multiescala, 
+            sustentabilidade e governança digital na infraestrutura rodoviária brasileira.
+        </p>
+    </header>
+
+    <section id="obras">
+        <h2>Obras & Projetos</h2>
+        <div class="grid">
+            
+            <div class="obra-card">
+                <span class="tag">DESTAQUE INTERNACIONAL</span>
+                <div class="obra-titulo">Top Cited Article 2022-2023</div>
+                <p class="obra-desc">Publicação de alto impacto na Wiley sobre mecânica de materiais asfálticos, reconhecida entre as mais citadas globalmente.</p>
+            </div>
+
+            <div class="obra-card">
+                <span class="tag">GOVERNANÇA DIGITAL</span>
+                <div class="obra-titulo">Sistema de Auditoria TCE-CE</div>
+                <p class="obra-desc">Desenvolvimento de infraestrutura digital baseada em evidências para fiscalização de obras rodoviárias públicas.</p>
+            </div>
+
+            <div class="obra-card">
+                <span class="tag">SUSTENTABILIDADE</span>
+                <div class="obra-titulo">Pavimentos Reciclados (RAP)</div>
+                <p class="obra-desc">Pesquisa avançada em remobilização de ligante e análise de ciclo de vida para infraestrutura verde.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Jorge Barbosa Soares — Ciência e Tecnologia de Pavimentos</p>
+    </footer>
+
+</body>
+</html>
