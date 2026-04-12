@@ -8,16 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Fundo alterado: Começa Preto e desce para Azul Noite Profundo */
             --bg-top: #000000;
-            --bg-bottom: #0a1033; /* Azul profundo inspirado na obra */
-            --surface: #101426;
+            --bg-bottom: #0a1033;
+            --surface: rgba(255, 255, 255, 0.03);
             --text-main: #f5f5f5;
             --text-muted: #a0a0a0;
             --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
             --border: rgba(255, 255, 255, 0.1);
-            
-            /* Variáveis para a moldura (mantidas) */
             --frame-color: rgba(255, 255, 255, 0.05);
             --frame-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             --inner-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
@@ -25,37 +22,32 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* Aplicando o Degradê Vertical no Fundo */
             background: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-bottom) 100%);
-            background-attachment: fixed; /* Mantém o degradê fixo ao rolar */
+            background-attachment: fixed;
             color: var(--text-main);
             margin: 0;
-            line-height: 1.6;
+            line-height: 1.8;
             -webkit-font-smoothing: antialiased;
-            position: relative;
-            overflow-x: hidden;
         }
 
-        /* Efeito de Estrelas Extremamente Sutis (Refinado) */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Estrelas menores, mais opacas e esparsas */
-            background-image: 
-                radial-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
-                radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
-            background-size: 400px 400px, 250px 250px;
-            background-position: 0 0, 100px 150px;
+            background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
+            background-size: 300px 300px;
             z-index: -2;
-            pointer-events: none;
-            opacity: 0.3; /* Muito sutil */
+            opacity: 0.2;
         }
 
-        /* Gradiente no topo (removido para manter o preto puro no início) */
+        .container {
+            max-width: 1100px; /* Reduzi um pouco para melhorar a legibilidade de textos longos */
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
         header {
-            padding: 10rem 2rem 6rem;
+            padding: 8rem 2rem 4rem;
             text-align: center;
         }
 
@@ -70,279 +62,212 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .artist-statement {
-            max-width: 650px;
-            margin: 2.5rem auto;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            letter-spacing: 0.5px;
+        /* Seções de Texto Informativo */
+        .info-section {
+            margin-bottom: 6rem;
+            border-left: 1px solid var(--border);
+            padding-left: 2rem;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .collection-header {
-            margin: 8rem 0 4rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1.5rem;
-        }
-
-        .collection-header h2 {
+        .info-section h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            font-style: italic;
-            margin: 0;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
         }
 
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .narrative-box {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            margin: 4rem 0;
+        }
+
+        .characters-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .char-item {
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .char-item:hover {
+            border-color: #a855f7;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .char-name {
+            display: block;
+            font-weight: 600;
+            color: #ec4899;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Grid de Obras (Mantido) */
         .art-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 5rem;
-            align-items: end;
+            margin-top: 4rem;
         }
 
         .art-item {
             cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            
-            /* Estilo da moldura (mantido) */
             padding: 1rem;
             background-color: var(--frame-color);
             border: 1px solid var(--border);
             border-radius: 4px;
             box-shadow: var(--frame-shadow);
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .art-item:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
         }
 
         .img-container {
-            background-color: #010205; /* Fundo mais escuro interno */
+            background-color: #010205;
             overflow: hidden;
-            margin-bottom: 2rem;
-            border-radius: 2px;
-            /* Sombra interna (mantido) */
+            margin-bottom: 1.5rem;
             box-shadow: var(--inner-shadow);
         }
 
-        .img-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 1.2s ease;
-        }
+        .img-container img { width: 100%; display: block; transition: 1.2s ease; }
+        .art-item:hover .img-container img { transform: scale(1.08); }
 
-        .art-item:hover .img-container img {
-            transform: scale(1.08);
-        }
-
-        .art-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.75rem;
-        }
-
-        .art-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin: 0;
-        }
-
-        .art-year {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .art-specs {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 1rem;
-            color: var(--text-muted);
-        }
-
-        .art-description {
-            margin-top: 1.2rem;
-            font-size: 0.95rem;
-            color: #888;
-            max-width: 95%;
-            font-weight: 300;
-        }
-
-        /* MODAL / LIGHTBOX - GLASSMORPHISM (mantido) */
-        #modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 1, 10, 0.97); /* Ajustado para o degradê */
-            backdrop-filter: blur(15px); /* Mais desfoque */
-            justify-content: center;
-            align-items: center;
-            cursor: zoom-out;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        #modal img {
-            max-width: 90%;
-            max-height: 85vh;
-            object-fit: contain;
-            box-shadow: 0 0 120px rgba(0,0,0,1);
-            /* Moldura simples no modal também */
-            border: 10px solid var(--frame-color);
-            border-radius: 2px;
-        }
+        .art-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin: 0; }
+        .art-specs { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-top: 0.5rem;}
 
         footer {
-            margin-top: 15rem;
-            padding: 8rem 2rem;
-            background: #010206; /* Fundo do footer ajustado para o final do degradê */
-            border-top: 1px solid var(--border);
+            margin-top: 10rem;
+            padding: 6rem 2rem;
             text-align: center;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
+            border-top: 1px solid var(--border);
         }
 
         .contact-link {
-            color: var(--text-main);
+            color: #fff;
             text-decoration: none;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-family: 'Playfair Display', serif;
-            display: inline-block;
-            position: relative;
-            transition: opacity 0.3s ease;
-        }
-
-        .contact-link::after {
-            content: "";
-            position: absolute;
-            bottom: -5px; left: 0; width: 100%; height: 1px;
-            background: var(--accent-gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-link:hover::after {
-            transform: scaleX(1);
         }
 
         @media (max-width: 768px) {
-            header { padding: 6rem 1.5rem 3rem; }
-            .art-grid { grid-template-columns: 1fr; gap: 4rem; }
-            .container { padding: 0 1.5rem; }
-            .contact-link { font-size: 1.4rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .art-grid { grid-template-columns: 1fr; }
         }
+
+        #modal {
+            display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; cursor: zoom-out;
+        }
+        #modal img { max-width: 90%; max-height: 85vh; border: 10px solid var(--frame-color); }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Jorge Lucas Júnior</h1>
-        <p class="artist-statement">
-            Explorações visuais entre o surrealismo e a psicodelia, investigando a coexistência de sistemas naturais e extraterrestres.
-        </p>
     </header>
 
     <div class="container">
         
-        <div class="collection-header">
-            <h2>Série: Caleidoscópio Psicodélico</h2>
+        <div class="info-grid">
+            <section class="info-section">
+                <h2>Sobre o Artista</h2>
+                <p>Jorge Lucas desenvolve uma linguagem visual autoral que combina elementos do surrealismo, da arte psicodélica e da narrativa simbólica. Sua obra investiga temas como tempo, percepção, deslocamento e sistemas de troca, criando universos visuais onde o real e o imaginário coexistem.</p>
+            </section>
+
+            <section class="info-section">
+                <h2>Texto Curatorial</h2>
+                <p>A série <em>Caleidoscópio Psicodélico</em> constrói um universo narrativo onde o absurdo e o cotidiano coexistem sob uma lógica própria. No centro está o surfista, personagem que atravessa estados alterados de percepção.</p>
+                <p>A circulação de cogumelos estrutura o sistema simbólico, onde forças naturais e extraterrestres interagem em um ecossistema marcado por elementos como relógios e ampulhetas, reforçando a ideia de percepção expandida.</p>
+            </section>
         </div>
 
+        <div class="narrative-box">
+            <h2 style="font-family: 'Playfair Display', serif; margin-top:0">A Narrativa da Série</h2>
+            <p>O surfista cultiva cogumelos para consumo e comércio, surfando sobre a tartaruga <strong>Rubens</strong> sob efeitos da Nona Sinfonia de Beethoven. A logística atravessa desertos via avião, mas o equilíbrio é ameaçado por gafanhotos, combatidos pelo cardeal <strong>Bergóglio</strong>.</p>
+            <p>Entidades extraterrestres (Varginha, Bilú e Etevaldo) constroem pirâmides para extrair o princípio ativo dos cogumelos. Um roubo inicia uma perseguição entre a realidade e a alucinação, culminando na dispersão dos seres para Varginha-MG, Corguinho-MS e o espaço profundo.</p>
+            
+            <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 2rem; color: #ec4899;">Guia de Personagens</h3>
+            <div class="characters-list">
+                <div class="char-item"><span class="char-name">Surfista</span> Protagonista</div>
+                <div class="char-item"><span class="char-name">Rubens</span> Tartaruga (base/suporte)</div>
+                <div class="char-item"><span class="char-name">Bergóglio</span> Cardeal (equilíbrio)</div>
+                <div class="char-item"><span class="char-name">Alfredin</span> Cacto (ambiente)</div>
+                <div class="char-item"><span class="char-name">Varginha</span> ET Verde</div>
+                <div class="char-item"><span class="char-name">ET Bilú</span> ET Vermelho</div>
+                <div class="char-item"><span class="char-name">Etevaldo</span> ET Azul</div>
+            </div>
+        </div>
+
+        <h2 style="font-family: 'Playfair Display', serif; font-style: italic; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-top: 8rem;">Obras da Série</h2>
+        
         <main class="art-grid">
             <article class="art-item" onclick="openModal('img/0.jpg')">
-                <div class="img-container"><img src="img/0.jpg" alt="Caleidoscópio Psicodélico"></div>
+                <div class="img-container"><img src="img/0.jpg" alt="0 - Caleidoscópio Psicodélico"></div>
                 <div class="art-meta">
                     <h3 class="art-title">0 - Caleidoscópio Psicodélico</h3>
-                    <span class="art-year">2026</span>
+                    <p class="art-specs">Acrílica sobre tela • 40x60cm • 2026</p>
+                    <p style="color: #888; font-size: 0.9rem;">Obra central que estabelece o sistema simbólico completo.</p>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 40x60cm</p>
-                <p class="art-description">A peça central que ancora todo o sistema simbólico da série.</p>
             </article>
 
             <article class="art-item" onclick="openModal('img/1.jpg')">
                 <div class="img-container"><img src="img/1.jpg" alt="A plantação"></div>
                 <div class="art-meta">
                     <h3 class="art-title">01 - A plantação de cogumelos</h3>
-                    <span class="art-year">2026</span>
+                    <p class="art-specs">Acrílica sobre tela • 30x40cm • 2026</p>
+                    <p style="color: #888; font-size: 0.9rem;">Origem do sistema produtivo e a relação com a natureza.</p>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">O princípio produtivo e a harmonia biológica inicial.</p>
             </article>
 
             <article class="art-item" onclick="openModal('img/2.jpg')">
                 <div class="img-container"><img src="img/2.jpg" alt="Construção das pirâmides"></div>
                 <div class="art-meta">
                     <h3 class="art-title">02 - A construção das pirâmides</h3>
-                    <span class="art-year">2026</span>
+                    <p class="art-specs">Acrílica sobre tela • 30x40cm • 2026</p>
+                    <p style="color: #888; font-size: 0.9rem;">Entrada dos agentes extraterrestres e transformação do espaço.</p>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">A integração da tecnologia alienígena na paisagem primitiva.</p>
             </article>
 
             <article class="art-item" onclick="openModal('img/3.jpg')">
                 <div class="img-container"><img src="img/3.jpg" alt="O roubo"></div>
                 <div class="art-meta">
                     <h3 class="art-title">03 - O roubo dos cogumelos</h3>
-                    <span class="art-year">2026</span>
+                    <p class="art-specs">Acrílica sobre tela • 30x40cm • 2026</p>
+                    <p style="color: #888; font-size: 0.9rem;">Momento de ruptura, conflito e apropriação do recurso.</p>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">O clímax narrativo: a ruptura e o conflito de interesses.</p>
             </article>
 
             <article class="art-item" onclick="openModal('img/4.jpg')">
                 <div class="img-container"><img src="img/4.jpg" alt="A fuga"></div>
                 <div class="art-meta">
                     <h3 class="art-title">04 - A fuga dos ETs</h3>
-                    <span class="art-year">2026</span>
+                    <p class="art-specs">Acrílica sobre tela • 30x40cm • 2026</p>
+                    <p style="color: #888; font-size: 0.9rem;">Desfecho marcado pela dispersão e consequências do sistema.</p>
                 </div>
-                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
-                <p class="art-description">O desfecho cíclico e as marcas deixadas no ecossistema.</p>
             </article>
         </main>
-
-        <div class="collection-header">
-            <h2>Outras Obras</h2>
-        </div>
-
-        <section class="art-grid">
-            <article class="art-item" onclick="openModal('img/jogatina.jpg')">
-                <div class="img-container"><img src="img/jogatina.jpg" alt="A Jogatina"></div>
-                <div class="art-meta">
-                    <h3 class="art-title">A jogatina</h3>
-                    <span class="art-year">2026</span>
-                </div>
-                <p class="art-specs">Técnica Mista • 50x70cm</p>
-                <p class="art-description">Encontros improváveis: Jack, o jacaré, e Suri, a programadora.</p>
-            </article>
-
-            <article class="art-item" onclick="openModal('img/meteoro.jpg')">
-                <div class="img-container"><img src="img/meteoro.jpg" alt="O Meteoro"></div>
-                <div class="art-meta">
-                    <h3 class="art-title">O meteoro</h3>
-                    <span class="art-year">2026</span>
-                </div>
-                <p class="art-specs">Técnica Mista • 40x60cm</p>
-            </article>
-        </section>
     </div>
 
     <div id="modal" onclick="this.style.display='none'">
@@ -350,9 +275,9 @@
     </div>
 
     <footer>
-        <p>Interessado em adquirir ou expor?</p>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Entre em contato para aquisições ou exposições</p>
         <a href="mailto:jorgelucas@det.ufc.br" class="contact-link">jorgelucas@det.ufc.br</a>
-        <p style="margin-top: 2rem; letter-spacing: 2px;">+55 85 98817 9510</p>
+        <p style="margin-top: 1rem;">(85) 98817-9510</p>
     </footer>
 
     <script>
