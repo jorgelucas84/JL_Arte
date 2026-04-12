@@ -15,7 +15,6 @@
             --text-muted: #a0a0a0;
             --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
             --border: rgba(255, 255, 255, 0.1);
-            
             --frame-wood: #1a1512; 
             --frame-metal: #c5a059; 
         }
@@ -78,7 +77,7 @@
         }
 
         .collection-header {
-            margin: 8rem 0 3rem; /* Reduzi a margem inferior */
+            margin: 8rem 0 3rem;
             border-bottom: 1px solid var(--border);
             padding-bottom: 1rem;
         }
@@ -91,29 +90,36 @@
             margin: 0;
         }
 
-        /* NOVO LAYOUT DA SÉRIE: 1 Esquerda, 4 Direita (2x2) */
-        .serie-grid {
+        /* CONFIGURAÇÃO DO ALINHAMENTO SOLICITADO */
+        .art-grid-serie {
             display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr; /* Coluna do principal maior */
-            grid-template-areas: 
-                "main item1 item2"
-                "main item3 item4";
-            gap: 3rem;
-            align-items: start;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 2rem 3rem; /* Espaçamento reduzido entre textos */
+            align-items: stretch;
         }
 
-        .main-item { grid-area: main; }
-        .item-1 { grid-area: item1; }
-        .item-2 { grid-area: item2; }
-        .item-3 { grid-area: item3; }
-        .item-4 { grid-area: item4; }
+        .main-art {
+            grid-row: span 2; /* Faz o quadro ocupar as duas linhas da direita */
+            display: flex;
+            flex-direction: column;
+        }
 
-        /* GRID PADRÃO PARA OUTRAS OBRAS */
-        .art-grid {
+        .main-art .img-container {
+            flex-grow: 1;
+            display: flex;
+        }
+
+        .main-art .img-container img {
+            object-fit: cover; /* Garante que preencha a altura sem distorcer */
+            height: 100%;
+        }
+
+        /* GRID PADRÃO PARA OUTRAS SEÇÕES */
+        .art-grid-others {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 4rem;
-            align-items: start;
         }
 
         .art-item {
@@ -126,8 +132,8 @@
         .img-container {
             position: relative;
             background-color: #010205;
-            margin-bottom: 1rem; /* Reduzi o espaço abaixo da imagem */
-            padding: 10px; 
+            margin-bottom: 1rem;
+            padding: 12px; 
             background: var(--frame-wood);
             border: 1.5px solid var(--frame-metal);
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8);
@@ -148,36 +154,33 @@
             justify-content: space-between;
             align-items: baseline;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 0.4rem; /* Reduzi o padding */
+            padding-bottom: 0.5rem;
         }
 
         .art-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: 1.1rem;
             margin: 0;
         }
 
         .art-year {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            font-weight: 600;
         }
 
         .art-specs {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 0.5rem; /* Reduzi o espaço */
+            margin: 0.5rem 0 0.2rem;
             color: var(--text-muted);
         }
 
         .art-description {
-            margin-top: 0.5rem; /* Reduzi o espaço */
+            margin: 0.5rem 0;
             font-size: 0.85rem;
             color: #888;
-            max-width: 95%;
             font-weight: 300;
-            line-height: 1.4;
         }
 
         #modal {
@@ -217,19 +220,13 @@
         }
 
         @media (max-width: 1024px) {
-            .serie-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-template-areas: 
-                    "main main"
-                    "item1 item2"
-                    "item3 item4";
-            }
+            .art-grid-serie { grid-template-columns: 1fr 1fr; }
+            .main-art { grid-row: span 1; grid-column: span 2; }
         }
 
         @media (max-width: 768px) {
-            .serie-grid { grid-template-columns: 1fr; grid-template-areas: none; }
-            .serie-grid article { grid-area: auto !important; }
-            .art-grid { grid-template-columns: 1fr; }
+            .art-grid-serie, .art-grid-others { grid-template-columns: 1fr; }
+            .main-art { grid-column: span 1; }
         }
     </style>
 </head>
@@ -247,8 +244,8 @@
             <h2>Série: Caleidoscópio Psicodélico</h2>
         </div>
 
-        <main class="serie-grid">
-            <article class="art-item main-item" onclick="openModal('img/0.jpg')">
+        <main class="art-grid-serie">
+            <article class="art-item main-art" onclick="openModal('img/0.jpg')">
                 <div class="img-container"><img src="img/0.jpg" alt="Caleidoscópio Psicodélico"></div>
                 <div class="art-meta">
                     <h3 class="art-title">0 - Caleidoscópio Psicodélico</h3>
@@ -258,44 +255,44 @@
                 <p class="art-description">A peça central que ancora todo o sistema simbólico da série.</p>
             </article>
 
-            <article class="art-item item-1" onclick="openModal('img/1.jpg')">
+            <article class="art-item" onclick="openModal('img/1.jpg')">
                 <div class="img-container"><img src="img/1.jpg" alt="A plantação"></div>
                 <div class="art-meta">
                     <h3 class="art-title">01 - A plantação</h3>
                     <span class="art-year">2026</span>
                 </div>
                 <p class="art-specs">30x40cm</p>
-                <p class="art-description">Princípio produtivo e harmonia biológica.</p>
+                <p class="art-description">O princípio produtivo biológico.</p>
             </article>
 
-            <article class="art-item item-2" onclick="openModal('img/2.jpg')">
+            <article class="art-item" onclick="openModal('img/2.jpg')">
                 <div class="img-container"><img src="img/2.jpg" alt="Construção das pirâmides"></div>
                 <div class="art-meta">
-                    <h3 class="art-title">02 - Pirâmides</h3>
+                    <h3 class="art-title">02 - As pirâmides</h3>
                     <span class="art-year">2026</span>
                 </div>
                 <p class="art-specs">30x40cm</p>
                 <p class="art-description">Integração tecnológica alienígena.</p>
             </article>
 
-            <article class="art-item item-3" onclick="openModal('img/3.jpg')">
+            <article class="art-item" onclick="openModal('img/3.jpg')">
                 <div class="img-container"><img src="img/3.jpg" alt="O roubo"></div>
                 <div class="art-meta">
                     <h3 class="art-title">03 - O roubo</h3>
                     <span class="art-year">2026</span>
                 </div>
                 <p class="art-specs">30x40cm</p>
-                <p class="art-description">Ruptura e conflito de interesses.</p>
+                <p class="art-description">Clímax e ruptura narrativa.</p>
             </article>
 
-            <article class="art-item item-4" onclick="openModal('img/4.jpg')">
+            <article class="art-item" onclick="openModal('img/4.jpg')">
                 <div class="img-container"><img src="img/4.jpg" alt="A fuga"></div>
                 <div class="art-meta">
                     <h3 class="art-title">04 - A fuga</h3>
                     <span class="art-year">2026</span>
                 </div>
                 <p class="art-specs">30x40cm</p>
-                <p class="art-description">Desfecho cíclico no ecossistema.</p>
+                <p class="art-description">Desfecho e marcas no ecossistema.</p>
             </article>
         </main>
 
@@ -303,7 +300,7 @@
             <h2>Outras Obras</h2>
         </div>
 
-        <section class="art-grid">
+        <section class="art-grid-others">
             <article class="art-item" onclick="openModal('img/jogatina.jpg')">
                 <div class="img-container"><img src="img/jogatina.jpg" alt="A Jogatina"></div>
                 <div class="art-meta">
