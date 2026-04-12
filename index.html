@@ -56,7 +56,7 @@
         }
         
         .header-icon svg, .header-icon img {
-            width: 96px; /* Aumentado de 80px para 96px (1.2x) */
+            width: 96px; 
             height: auto;
         }
 
@@ -147,7 +147,7 @@
             text-decoration: none;
             color: inherit;
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: flex; /* Adicionado para alinhar conteúdo verticalmente */
+            display: flex; 
             flex-direction: column;
         }
 
@@ -203,10 +203,9 @@
             font-size: 0.85rem;
             color: #888;
             font-weight: 300;
-            flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
+            flex-grow: 1; 
         }
 
-        /* Estilo para o link do Quadro Animado */
         .animated-frame-link {
             display: inline-block;
             margin-top: 0.5rem;
@@ -214,7 +213,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #6366f1; /* Cor de destaque */
+            color: #6366f1; 
             text-decoration: none;
             border-bottom: 1px solid transparent;
             transition: border-color 0.3s;
@@ -247,11 +246,19 @@
             align-items: center;
         }
 
-        #modal img, #modal video {
+        #modal img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 80vh;
             object-fit: contain;
-            display: none; /* Escondido por padrão, JavaScript mostra o correto */
+            display: none;
+        }
+
+        #modal video {
+            max-width: 600px; /* Reduz o tamanho horizontal do vídeo */
+            width: 100%;      /* Garante responsividade */
+            max-height: 70vh; /* Reduz o tamanho vertical para não estourar a tela */
+            object-fit: contain;
+            display: none;
         }
 
         footer {
@@ -279,6 +286,7 @@
             .main-art { grid-column: span 1; }
             .serie-narrative { padding-left: 1rem; }
             header { padding: 3rem 1rem 2rem; }
+            #modal video { max-width: 90vw; } /* Em celulares, ocupa quase a tela toda */
         }
     </style>
 </head>
@@ -404,7 +412,8 @@
     </div>
 
     <div id="modal" onclick="closeModal()">
-        <div class="modal-content-wrapper" onclick="event.stopPropagation()"> <img id="modal-img" src="">
+        <div class="modal-content-wrapper" onclick="event.stopPropagation()"> 
+            <img id="modal-img" src="">
             <video id="modal-video" controls loop playsinline></video>
         </div>
     </div>
@@ -427,21 +436,21 @@
                 modalImg.style.display = 'block';
                 modalVideo.style.display = 'none';
                 modalImg.src = src;
-                modalVideo.src = ''; // Limpa o vídeo anterior
+                modalVideo.src = ''; 
             } else if (type === 'vid') {
                 modalImg.style.display = 'none';
                 modalVideo.style.display = 'block';
-                modalImg.src = ''; // Limpa a imagem anterior
+                modalImg.src = ''; 
                 modalVideo.src = src;
-                modalVideo.play(); // Toca automaticamente ao abrir
+                modalVideo.play(); 
             }
         }
 
         function closeModal() {
             modal.style.display = 'none';
-            modalVideo.pause(); // Pausa o vídeo ao fechar
-            modalVideo.src = ''; // Limpa a origem do vídeo
-            modalImg.src = '';   // Limpa a origem da imagem
+            modalVideo.pause(); 
+            modalVideo.src = ''; 
+            modalImg.src = '';   
         }
     </script>
 </body>
