@@ -7,127 +7,220 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #666; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; line-height: 1.6; }
-        
-        header { padding: 5rem 2rem; text-align: center; border-bottom: 1px solid #eee; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; font-weight: 400; }
-        .subtitle { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: var(--accent); margin-top: 1rem; }
-
-        .about-section { max-width: 800px; margin: 4rem auto; padding: 0 2rem; text-align: center; }
-        .about-section h2 { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; }
-
-        .gallery-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .collection-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 3rem 0 1.5rem; border-left: 4px solid #000; padding-left: 1rem; }
-        
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-            grid-gap: 2.5rem; 
+        :root {
+            --bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+            --accent: #000;
         }
 
-        .art-card { position: relative; background: #f9f9f9; transition: all 0.4s ease; border: 1px solid #eee; }
-        .art-card img { width: 100%; height: auto; display: block; filter: grayscale(20%); transition: 0.5s; }
-        .art-card:hover img { filter: grayscale(0%); transform: scale(1.02); }
-        
-        .art-details { padding: 1.5rem; }
-        .art-details h3 { margin: 0; font-size: 1.1rem; font-family: 'Playfair Display', serif; }
-        .art-details p { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
-        .art-description { font-size: 0.85rem; color: #444; margin-top: 1rem !important; text-transform: none !important; letter-spacing: normal !important; font-style: italic; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
 
-        footer { padding: 5rem 2rem; background: #1a1a1a; color: white; text-align: center; margin-top: 4rem; }
-        .contact-info { margin-top: 1rem; font-size: 0.9rem; color: #ccc; }
+        /* Cabeçalho Minimalista */
+        header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 400;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .artist-statement {
+            max-width: 600px;
+            margin: 2rem auto;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* Grid de Exposição */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .collection-header {
+            margin: 6rem 0 3rem;
+            border-top: 1px solid #eee;
+            padding-top: 2rem;
+        }
+
+        .collection-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 4rem;
+        }
+
+        /* Card da Obra */
+        .art-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .img-container {
+            background-color: #f5f5f5;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .art-item:hover .img-container img {
+            transform: scale(1.05);
+        }
+
+        .art-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .art-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .art-year {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .art-specs {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .art-description {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #444;
+            max-width: 90%;
+        }
+
+        /* Rodapé de Contato */
+        footer {
+            margin-top: 10rem;
+            padding: 5rem 2rem;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            display: block;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .art-grid { grid-template-columns: 1fr; }
+            header { padding-top: 4rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Jorge Lucas Júnior</h1>
-        <p class="subtitle">Artista Visual • Surrealismo • Psicodelia</p>
+        <p class="artist-statement">
+            Investigando temas como tempo, percepção e sistemas de troca através de universos visuais onde o real e o imaginário coexistem. [cite: 7]
+        </p>
     </header>
 
-    <section class="about-section">
-        <h2>Sobre o Artista</h2>
-        <p>Desenvolvo uma linguagem visual autoral que combina elementos do surrealismo e da narrativa simbólica. Minha obra investiga temas como tempo, percepção e sistemas de troca, criando universos onde o real e o imaginário coexistem.</p>
-    </section>
-
-    <div class="gallery-container">
-        <h2 class="collection-title">Série: Caleidoscópio Psicodélico</h2>
-        <div class="gallery-grid">
-            <div class="art-card">
-                <img src="obra0.jpg" alt="Caleidoscópio Psicodélico">
-                <div class="art-details">
-                    <h3>0 - Caleidoscópio Psicodélico</h3>
-                    <p>Acrílica sobre tela | 40x60cm | 2026</p>
-                    <p class="art-description">Obra central que estabelece o sistema simbólico completo da série.</p>
-                </div>
-            </div>
-
-            <div class="art-card">
-                <img src="obra1.jpg" alt="A plantação de cogumelos">
-                <div class="art-details">
-                    <h3>01 - A plantação de cogumelos</h3>
-                    <p>Acrílica sobre tela | 30x40cm | 2026</p>
-                    <p class="art-description">Representa a origem do sistema produtivo e a relação com a natureza.</p>
-                </div>
-            </div>
-
-            <div class="art-card">
-                <img src="obra2.jpg" alt="A construção das pirâmides">
-                <div class="art-details">
-                    <h3>02 - A construção das pirâmides</h3>
-                    <p>Acrílica sobre tela | 30x40cm | 2026</p>
-                    <p class="art-description">A entrada dos agentes extraterrestres e a transformação tecnológica.</p>
-                </div>
-            </div>
-
-            <div class="art-card">
-                <img src="obra3.jpg" alt="O roubo dos cogumelos">
-                <div class="art-details">
-                    <h3>03 - O roubo dos cogumelos</h3>
-                    <p>Acrílica sobre tela | 30x40cm | 2026</p>
-                    <p class="art-description">Momento de ruptura, conflito e apropriação do recurso central.</p>
-                </div>
-            </div>
-
-            <div class="art-card">
-                <img src="obra4.jpg" alt="A fuga dos ETs">
-                <div class="art-details">
-                    <h3>04 - A fuga dos ETs</h3>
-                    <p>Acrílica sobre tela | 30x40cm | 2026</p>
-                    <p class="art-description">Desfecho marcado pela dispersão e consequências do sistema.</p>
-                </div>
-            </div>
+    <div class="container">
+        
+        <div class="collection-header">
+            <h2>Série: Caleidoscópio Psicodélico</h2>
         </div>
 
-        <h2 class="collection-title">Outras Obras</h2>
-        <div class="gallery-grid">
-            <div class="art-card">
-                <img src="jogatina.jpg" alt="A jogatina">
-                <div class="art-details">
-                    <h3>A jogatina</h3>
-                    <p>Técnica Mista | 50x70cm</p>
-                    <p class="art-description">Apresentando personagens como Jack (jacaré fotógrafo) e Suri (suricato programadora).</p>
+        <main class="art-grid">
+            <article class="art-item">
+                <div class="img-container">
+                    <img src="img/0.jpg" alt="Obra Central">
                 </div>
-            </div>
+                <div class="art-meta">
+                    <h3 class="art-title">0 - Caleidoscópio Psicodélico</h3>
+                    <span class="art-year">2026</span>
+                </div>
+                <p class="art-specs">Acrílica sobre tela • 40x60cm</p>
+                <p class="art-description">Obra central da série, estabelece o sistema simbólico completo. [cite: 33]</p>
+            </article>
 
-            <div class="art-card">
-                <img src="meteoro.jpg" alt="O meteoro">
-                <div class="art-details">
-                    <h3>O meteoro</h3>
-                    <p>Técnica Mista | 40x60cm</p>
+            <article class="art-item">
+                <div class="img-container">
+                    <img src="img/1.jpg" alt="A plantação">
                 </div>
-            </div>
+                <div class="art-meta">
+                    <h3 class="art-title">01 - A plantação de cogumelos</h3>
+                    <span class="art-year">2026</span>
+                </div>
+                <p class="art-specs">Acrílica sobre tela • 30x40cm</p>
+                <p class="art-description">A origem do sistema produtivo e a relação direta com a natureza. [cite: 39]</p>
+            </article>
+
+            </main>
+
+        <div class="collection-header">
+            <h2>Outras Explorações</h2>
         </div>
+
+        <section class="art-grid">
+            <article class="art-item">
+                <div class="img-container">
+                    <img src="img/jogatina.jpg" alt="A Jogatina">
+                </div>
+                <div class="art-meta">
+                    <h3 class="art-title">A Jogatina</h3>
+                    <span class="art-year">2026</span>
+                </div>
+                <p class="art-specs">Técnica Mista • 50x70cm</p>
+                <p class="art-description">Apresentando Jack, Suri, Rubens e Martin em um momento de pausa. [cite: 58, 60, 61]</p>
+            </article>
+        </section>
+
     </div>
 
     <footer>
-        <p><strong>Jorge Lucas Júnior</strong></p>
-        <div class="contact-info">
-            <p>Email: jorgelucas@det.ufc.br</p>
-            <p>Telefone: (85) 98817-9510</p>
-        </div>
-        <p style="font-size: 0.7rem; margin-top: 2rem; opacity: 0.5;">&copy; 2026 — Todos os direitos reservados.</p>
+        <p>Gostou do trabalho? Vamos conversar.</p>
+        <a href="mailto:jorgelucas@det.ufc.br" class="contact-link">jorgelucas@det.ufc.br</a>
+        <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 3rem;">
+            Jorge Lucas Júnior • 2026 • Todos os direitos reservados.
+        </p>
     </footer>
 
 </body>
