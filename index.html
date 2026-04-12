@@ -5,70 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jorge Lucas Júnior | Portfólio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-top: #000000;
-            --bg-bottom: #0a1033;
-            --surface: #101426;
+            --bg-bottom: #05081a;
+            --surface: rgba(16, 20, 38, 0.4);
             --text-main: #f5f5f5;
-            --text-muted: #a0a0a0;
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            --border: rgba(255, 255, 255, 0.1);
-            --frame-wood: #1a1512; 
-            --frame-metal: #c5a059; 
+            --text-muted: #b0b0b0;
+            --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --frame-wood: #14110f; 
+            --frame-metal: #b38d45; 
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            background: radial-gradient(circle at top, #111827 0%, #000000 100%);
             background-attachment: fixed;
             color: var(--text-main);
             margin: 0;
-            line-height: 1.6;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
-            position: relative;
             overflow-x: hidden;
         }
 
+        /* Estrelas sutis ao fundo */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
-                radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
-            background-size: 400px 400px, 250px 250px;
-            background-position: 0 0, 100px 150px;
-            z-index: -2;
-            pointer-events: none;
-            opacity: 0.3;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 50px 50px;
+            z-index: -1;
         }
 
         header {
-            padding: 10rem 2rem 6rem;
+            padding: 12rem 2rem 8rem;
             text-align: center;
+            position: relative;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 10vw, 5rem);
-            /* AJUSTE AQUI: Mudado de 700 para 400 para diminuir a espessura */
+            font-size: clamp(3.5rem, 12vw, 6rem);
             font-weight: 400;
             margin: 0;
-            letter-spacing: -3px;
+            letter-spacing: -2px;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            opacity: 0.9;
         }
 
         .artist-statement {
-            max-width: 650px;
-            margin: 2.5rem auto;
-            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 3rem auto;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            font-weight: 200;
+            letter-spacing: 0.8px;
+            line-height: 1.8;
+            position: relative;
+            padding: 0 1rem;
         }
 
         .container {
@@ -78,146 +77,142 @@
         }
 
         .collection-header {
-            margin: 8rem 0 3rem;
+            margin: 10rem 0 3rem;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
         }
 
         .collection-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 400;
             font-style: italic;
             margin: 0;
+            color: #fff;
         }
 
         .serie-narrative {
             max-width: 100%;
-            margin: 2rem 0 4rem;
+            margin: 0 0 5rem 0;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 0.85rem;
+            font-weight: 300;
+            line-height: 1.8;
             text-align: justify;
-            border-left: 2px solid #6366f1;
-            padding-left: 2rem;
+            border-left: 1px solid rgba(129, 140, 248, 0.4);
+            padding-left: 2.5rem;
+            letter-spacing: 0.3px;
         }
 
         .art-grid-serie {
             display: grid;
             grid-template-columns: 1.2fr 1fr 1fr;
             grid-template-rows: auto auto;
-            gap: 2rem 3rem;
+            gap: 2.5rem 3.5rem;
             align-items: stretch;
         }
 
-        .main-art {
-            grid-row: span 2;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .main-art .img-container {
-            flex-grow: 1;
-            display: flex;
-        }
-
-        .main-art .img-container img {
-            object-fit: cover;
-            height: 100%;
-        }
+        .main-art { grid-row: span 2; display: flex; flex-direction: column; }
+        .main-art .img-container { flex-grow: 1; display: flex; }
+        .main-art .img-container img { object-fit: cover; height: 100%; }
 
         .art-grid-others {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 5rem;
         }
 
         .art-item {
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
         .img-container {
             position: relative;
             background-color: #010205;
-            margin-bottom: 1rem;
-            padding: 12px; 
+            margin-bottom: 1.5rem;
+            padding: 10px; 
             background: var(--frame-wood);
-            border: 1.5px solid var(--frame-metal);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8);
+            border: 1px solid var(--frame-metal);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.9);
+            overflow: hidden;
         }
 
         .img-container img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.8s ease;
         }
 
-        .art-item:hover {
-            transform: translateY(-8px);
-        }
+        .art-item:hover { transform: translateY(-12px); }
+        .art-item:hover .img-container img { transform: scale(1.03); }
 
         .art-meta {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.7rem;
         }
 
         .art-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 400;
             margin: 0;
         }
 
-        .art-year {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        .art-year { font-size: 0.8rem; color: #666; font-weight: 600; }
 
         .art-specs {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0.5rem 0 0.2rem;
-            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin: 0.8rem 0 0.4rem;
+            color: var(--frame-metal);
+            font-weight: 600;
         }
 
         .art-description {
             margin: 0.5rem 0;
             font-size: 0.85rem;
-            color: #888;
+            color: #777;
             font-weight: 300;
         }
 
+        /* Modal Refinado */
         #modal {
             display: none;
             position: fixed;
             z-index: 2000;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 1, 10, 0.97);
-            backdrop-filter: blur(15px);
+            background-color: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
             justify-content: center;
             align-items: center;
             cursor: zoom-out;
         }
 
         #modal img {
-            max-width: 85%;
-            max-height: 80vh;
+            max-width: 90%;
+            max-height: 85vh;
             object-fit: contain;
-            padding: 20px;
+            padding: 15px;
             background: var(--frame-wood);
-            border: 3px solid var(--frame-metal);
+            border: 2px solid var(--frame-metal);
+            box-shadow: 0 0 100px rgba(0,0,0,1);
         }
 
         footer {
-            margin-top: 10rem;
-            padding: 6rem 2rem;
-            background: #010206;
+            margin-top: 15rem;
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, transparent, #000);
             border-top: 1px solid var(--border);
             text-align: center;
         }
@@ -225,9 +220,12 @@
         .contact-link {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-family: 'Playfair Display', serif;
+            transition: opacity 0.3s;
         }
+
+        .contact-link:hover { opacity: 0.7; }
 
         @media (max-width: 1024px) {
             .art-grid-serie { grid-template-columns: 1fr 1fr; }
@@ -235,9 +233,11 @@
         }
 
         @media (max-width: 768px) {
+            header { padding: 8rem 1rem 4rem; }
             .art-grid-serie, .art-grid-others { grid-template-columns: 1fr; }
             .main-art { grid-column: span 1; }
-            .serie-narrative { padding-left: 1rem; }
+            .serie-narrative { padding-left: 1.5rem; }
+            .collection-header h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -345,9 +345,9 @@
     </div>
 
     <footer>
-        <p>Interessado em adquirir ou expor?</p>
+        <p style="color: #666; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 2rem;">CONTATO PROFISSIONAL</p>
         <a href="mailto:jorgelucas@det.ufc.br" class="contact-link">jorgelucas@det.ufc.br</a>
-        <p style="margin-top: 2rem; letter-spacing: 2px;">+55 85 98817 9510</p>
+        <p style="margin-top: 2rem; letter-spacing: 4px; font-weight: 200; color: var(--frame-metal);">+55 85 98817 9510</p>
     </footer>
 
     <script>
